@@ -1,27 +1,27 @@
-.collapsible[b-joay8k3w5h] {
+.collapsible[b-nslmltakfo] {
     line-height: -10px;
     display: none;
     transition: all ease 300ms;
 }
 
-collapsible.active[b-joay8k3w5h] {
+collapsible.active[b-nslmltakfo] {
     line-height: 1rem;
     display: unset;
     transition: all ease 300ms;
 }
 
-.plus-open_close[b-joay8k3w5h] {
+.plus-open_close[b-nslmltakfo] {
     font-size: 1.25rem;
     cursor: pointer;
     transition: all ease 150ms;
     min-width: 10vw;
 }
 
-.plus-open_close.active[b-joay8k3w5h] {
+.plus-open_close.active[b-nslmltakfo] {
     color: orangered;
     font-size: 4rem;
 }
 
-.option-dropdown[b-joay8k3w5h] {
+.option-dropdown[b-nslmltakfo] {
     z-index: 1000;
 }

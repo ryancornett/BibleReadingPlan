@@ -3,7 +3,7 @@ using BiblePlan.Domain;
 using BiblePlan.Factories;
 using BiblePlan.Services;
 
-namespace BiblePlan.Pages
+namespace BiblePlan.Shared
 {
     public partial class CreatePlan
     {
@@ -129,10 +129,8 @@ namespace BiblePlan.Pages
             var readings = await readingFactory.GenerateReadings(plan);
             for (int i = 0; i<readings.Count; i++)
             {
-                readings[i].ToReadToday.LogThis("Testing", Result.Success);
+                readings[i].ToReadToday.LogThis("", Result.Success);
             }
-
-            JSRuntime.InvokeVoidAsync("console.log", $"The number of readings = {readings.Count()}");
             StateHasChanged();
         }
     }

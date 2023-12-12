@@ -31,4 +31,4 @@ C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\refint\BiblePlan.dll
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\BiblePlan.pdb
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\BiblePlan.genruntimeconfig.cache
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\ref\BiblePlan.dll
-C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\scopedcss\Pages\CreatePlan.razor.rz.scp.css
+C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\scopedcss\Shared\CreatePlan.razor.rz.scp.css

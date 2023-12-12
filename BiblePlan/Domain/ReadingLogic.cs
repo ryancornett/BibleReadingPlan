@@ -2,14 +2,24 @@
 
 public class ReadingLogic
 {
-    public int SumOfChapterWordCounts(List<int> indeces, string book)
+    public async Task<TimeSpan> DaysInPlan(Plan plan)
     {
-        int result = 0;
-        foreach (var index in indeces)
+        return plan.EndDate.Date - plan.StartDate.Date;
+    }
+
+    public async Task<double> AverageDailyWordCount(double daysInPlan, int totalCount)
+    {
+        return totalCount / daysInPlan;
+    }
+
+    public async Task<int> TotalChapters(Plan plan)
+    {
+        int total = 0;
+        foreach (var book in plan.Books)
         {
-            var count = Books.BooksWithChapterWordCounts[book][index];
-            result += count;
+            var count = Books.BooksWithNumberOfChapters[book];
+            total += count;
         }
-        return result;
+        return total;
     }
 }
