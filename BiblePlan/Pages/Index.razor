@@ -1,0 +1,18 @@
+﻿@inject IJSRuntime JSRuntime
+
+@page "/"
+@using BiblePlan.Domain;
+
+<PageTitle>Index</PageTitle>
+
+<span @onclick="Click">@test</span>
+
+@code
+{
+    private string test = "+";
+
+    void Click()
+    {
+        test = "-";
+    }
+}

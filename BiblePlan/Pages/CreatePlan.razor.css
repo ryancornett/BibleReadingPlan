@@ -1,0 +1,27 @@
+﻿.collapsible {
+    line-height: -10px;
+    display: none;
+    transition: all ease 300ms;
+}
+
+collapsible.active {
+    line-height: 1rem;
+    display: unset;
+    transition: all ease 300ms;
+}
+
+.plus-open_close {
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all ease 150ms;
+    min-width: 10vw;
+}
+
+.plus-open_close.active {
+    color: orangered;
+    font-size: 4rem;
+}
+
+.option-dropdown {
+    z-index: 1000;
+}

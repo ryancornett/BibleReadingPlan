@@ -1,0 +1,112 @@
+﻿@using BiblePlan.Domain;
+@inject IJSRuntime JSRuntime
+
+@page "/create-plan"
+
+<PageTitle>Create a Reading Plan</PageTitle>
+
+<h1>Create a Reading Plan</h1>
+
+<EditForm Model="plan">
+    <div class="container">
+        <div class="form-row row align-items-start">
+            <div class="form-group col-md-4">
+                <label for="name">*Name:</label>
+                <input id="name"
+                       type="text"
+                       class="form-control"
+                @bind-value="plan.Name"
+                       required />
+
+                <label for="start">*Start date:</label>
+                <InputDate id="start"
+                           class="form-control"
+                @bind-Value="plan.StartDate" min="@DateTime.Now.ToString("yyyy-MM-dd")"
+                           required />
+
+                <label for="end">*End date:</label>
+                <InputDate id="end"
+                           class="form-control"
+                @bind-Value="plan.EndDate" min="@DateTime.Now.AddDays(7).ToString("yyyy-MM-dd")"
+                           required />
+
+                <label for="time">*Daily event time:</label>
+                <InputSelect id="time" class="form-control option-dropdown" @bind-Value="plan.StartTime">
+                    <option class="option-dropdown" selected="selected" disabled>--select a time--</option>
+                    @foreach (var time in Options.Times)
+                    {
+                        <option class="option-dropdown" @key=time value=@time >@time</option>
+                    }
+                </InputSelect>
+
+                <div>
+                    <label>Reading Days:</label>
+                    <div>
+                        @foreach (var day in Options.Days)
+                        {
+                            <label>
+                                <input type="checkbox"
+                                       value="@day"
+                                       checked="@plan.ReadingDays.Contains(day)"
+                                @onchange="() => ToggleReadingDay(day)" />
+                                @day
+                            </label>
+                        }
+                    </div>
+
+                    <p>Selected Reading Days: @string.Join(", ", plan.ReadingDays)</p>
+                </div>
+
+                <button type="submit" class="btn btn-primary" @onclick="Generate">Create</button>
+                <p>Plan name: @plan.Name</p>
+
+            </div>
+            <div class="form-group col-md-4">
+                <label class="h4">Books:</label>
+                <div class="my-2">
+                    <label class="me-1">
+                        <input type="checkbox"
+                        @onchange="() => ToggleOldTestament()" />
+                        Old Testament 
+                    </label>
+
+                    <span class="@openClose" @onclick="() => ShowTestament(1)"> @showOldTestament</span>
+
+                    <label class="ms-2">
+                        <input type="checkbox"
+                        @onchange="() => ToggleNewTestament()" />
+                        New Testament
+                    </label>
+
+                    <span class="@openClose" @onclick="() => ShowTestament(2)"> @showNewTestament</span>
+
+                </div>
+                <div class="my-3 @oldClass">
+                    @foreach (var book in Books.OldTestament)
+                    {
+                        <label class="me-2">
+                            <input type="checkbox"
+                                   value="@book"
+                                   checked="@plan.Books.Contains(book)"
+                            @onchange="() => ToggleBook(book)" />
+                            @book
+                        </label>
+                    }
+                </div>
+                <div class="my-3 @newClass">
+                    @foreach (var book in Books.NewTestament)
+                    {
+                        <label class="me-2">
+                            <input type="checkbox"
+                                   value="@book"
+                                   checked="@plan.Books.Contains(book)"
+                            @onchange="() => ToggleBook(book)" />
+                            @book
+                        </label>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</EditForm>

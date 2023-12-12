@@ -1,0 +1,27 @@
+.collapsible[b-joay8k3w5h] {
+    line-height: -10px;
+    display: none;
+    transition: all ease 300ms;
+}
+
+collapsible.active[b-joay8k3w5h] {
+    line-height: 1rem;
+    display: unset;
+    transition: all ease 300ms;
+}
+
+.plus-open_close[b-joay8k3w5h] {
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all ease 150ms;
+    min-width: 10vw;
+}
+
+.plus-open_close.active[b-joay8k3w5h] {
+    color: orangered;
+    font-size: 4rem;
+}
+
+.option-dropdown[b-joay8k3w5h] {
+    z-index: 1000;
+}
