@@ -5,45 +5,40 @@ namespace BiblePlan.Factories;
 
 public class ReadingFactory
 {
-    private List<int> _chapterLengths = new List<int>();
-    private int _totalLength;
-    private double _totalDays;
+    private int _runningCount;
+    private int _totalDays;
     private double _averageDailyWordCount;
-    private int _totalChapters;
+    private int _chaptersRemaining;
     private ReadingLogic _logic = new ReadingLogic();
-
-    public async Task GenerateReadingPlanData(Plan plan)
+    public SelectedDates? SelectedDates;
+    public List<string>? dates;
+    public async Task GetPlanData(Plan plan)
     {
-        _totalLength = await TotalPlanLength(plan);
-        TimeSpan totalDaysAsync = await _logic.DaysInPlan(plan);
-        _totalDays = totalDaysAsync.TotalDays;
-        _averageDailyWordCount = await _logic.AverageDailyWordCount(_totalDays, _totalLength);
-        _totalChapters = await _logic.TotalChapters(plan);
+        SelectedDates = new SelectedDates(plan);
+        dates = await SelectedDates.GetDates();
+        _runningCount = await _logic.TotalPlanLength(plan);
+        _totalDays = dates.Count();
+        _averageDailyWordCount = await _logic.AverageDailyWordCount(_totalDays, _runningCount);
+        _chaptersRemaining = await _logic.TotalChapters(plan);
     }
 
-    public List<Reading> readings = new List<Reading>();
+    private List<Reading> readings = new List<Reading>();
 
-    public async Task<List<Reading>> GenerateReadings(Plan plan)
+    public async Task<(List<Reading>? Readings, List<string>? Dates)> GenerateReadings(Plan plan)
     {
         readings.Clear();
-        GenerateReadingPlanData(plan);
+        await GetPlanData(plan);
         int day = 0;
-        int daysRemaining = (int)_totalDays;
-        int planLength = (int)_totalDays;
-        int averageWordCount = (int)_averageDailyWordCount;
-        int runningCount = _totalLength;
+        int daysRemaining = _totalDays;
         var bookTitlesInPlan = plan.Books;
         var numberOfBooksInPlan = bookTitlesInPlan.Count();
         int workingBook = 0;
         int workingChapter = 0;
-        int chaptersRemaining = _totalChapters;
-
-        day.LogThis($"Days remaining: {daysRemaining}, Average word count: {averageWordCount}, Number of books in plan: {numberOfBooksInPlan}", Result.Unknown);
 
         while (daysRemaining > 0)
         {
             day++;
-            int wordCount = 0;
+            int wordCount;
             var reading = new Reading();
             readings.Add(reading);
             if (workingBook > numberOfBooksInPlan) { break; }
@@ -55,15 +50,15 @@ public class ReadingFactory
                 workingChapter = 0;
             }
  
-            reading.ToReadToday = (bookTitlesInPlan[workingBook] == "Psalms" ? $"Day {day}: Psalm {workingChapter + 1}" : $"Day {day}: {bookTitlesInPlan[workingBook]} {workingChapter + 1}");
+            reading.ToReadToday = (bookTitlesInPlan[workingBook] == "Psalms" ? $"Psalm {workingChapter + 1}" : $"{bookTitlesInPlan[workingBook]} {workingChapter + 1}");
             var currentBookWordCounts = Books.BooksWithChapterWordCounts[bookTitlesInPlan[workingBook]];
             wordCount = currentBookWordCounts[workingChapter];
 
-            while (wordCount < (runningCount / daysRemaining))
+            while (wordCount < ((_runningCount / daysRemaining) - 100))
             {
-                if (daysRemaining == chaptersRemaining) { break; }
+                if (daysRemaining == _chaptersRemaining) { break; }
                 workingChapter++;
-                chaptersRemaining--;
+                _chaptersRemaining--;
                 if (workingChapter >= chaptersInBook)
                 {
                     workingBook++;
@@ -88,9 +83,9 @@ public class ReadingFactory
                     }
                 }
             }
-            runningCount -= wordCount;
+            _runningCount -= wordCount;
             workingChapter++;
-            chaptersRemaining--;
+            _chaptersRemaining--;
             if (workingChapter >= chaptersInBook)
             {
                 workingBook++;
@@ -100,23 +95,6 @@ public class ReadingFactory
         }
 
         readings.LogThis($"Number of readings = {readings.Count} - ", Result.Unknown);
-        return readings;
-    }
-
-    public async Task<int> TotalPlanLength(Plan plan)
-    {
-        int total = 0;
-        foreach (var book in plan.Books)
-        {
-            int runningTotal = 0;
-            var list = Books.BooksWithChapterWordCounts[book];
-            foreach (var num in list)
-            {
-                runningTotal += num;
-                _chapterLengths.Add(num);
-            }
-            total += runningTotal;
-        }
-        return total;
+        return (Readings: readings, Dates: dates);
     }
 }

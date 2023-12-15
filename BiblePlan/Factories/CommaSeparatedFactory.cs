@@ -4,9 +4,17 @@ namespace BiblePlan.Factories
 {
     public class CommaSeparatedFactory : ICalendarFactory
     {
-        public async Task<string> GenerateCalendar(List<Reading> reading)
+        public async Task<string> GenerateCalendar(Plan plan)
         {
-            var csv = string.Empty;
+            ReadingFactory factory = new ReadingFactory();
+            var result = await factory.GenerateReadings(plan);
+            var dates = result.Dates;
+            var readings = result.Readings;
+            var csv = "Date,Reading";
+            for (int i = 0; i < dates.Count; i++)
+            {
+                csv += $"\n{dates[i]},\"{readings[i].ToReadToday}\"";
+            }
             return csv;
         }
     }

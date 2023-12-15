@@ -32,3 +32,15 @@ C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\BiblePlan.pdb
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\BiblePlan.genruntimeconfig.cache
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\ref\BiblePlan.dll
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\scopedcss\Shared\CreatePlan.razor.rz.scp.css
+C:\CS\BiblePlan\BiblePlan\bin\Debug\net7.0\Microsoft.AspNetCore.Authorization.dll
+C:\CS\BiblePlan\BiblePlan\bin\Debug\net7.0\Microsoft.AspNetCore.Components.dll
+C:\CS\BiblePlan\BiblePlan\bin\Debug\net7.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\CS\BiblePlan\BiblePlan\bin\Debug\net7.0\Microsoft.AspNetCore.Components.Web.dll
+C:\CS\BiblePlan\BiblePlan\bin\Debug\net7.0\Microsoft.AspNetCore.Metadata.dll
+C:\CS\BiblePlan\BiblePlan\bin\Debug\net7.0\Microsoft.Extensions.Localization.dll
+C:\CS\BiblePlan\BiblePlan\bin\Debug\net7.0\Microsoft.Extensions.Localization.Abstractions.dll
+C:\CS\BiblePlan\BiblePlan\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\CS\BiblePlan\BiblePlan\bin\Debug\net7.0\Microsoft.JSInterop.dll
+C:\CS\BiblePlan\BiblePlan\bin\Debug\net7.0\MudBlazor.dll
+C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\BiblePlan.csproj.AssemblyReference.cache
+C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\BiblePlan.csproj.CopyComplete

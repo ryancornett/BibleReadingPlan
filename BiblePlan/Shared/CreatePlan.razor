@@ -1,13 +1,18 @@
 ﻿@using BiblePlan.Domain;
+@using BiblePlan.Services;
+@using BiblePlan.Factories;
+@using MudBlazor;
 @inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
 
 <h1>Create a Reading Plan</h1>
+<h5><span class="alert-info">Add books in your desired reading order</span></h5>
 
 <EditForm Model="plan">
     <div class="container">
         <div class="form-row row align-items-start">
             <div class="form-group col-md-4">
-                <label for="name">*Name:</label>
+                <label for="name">*Name (ADD REGEX FOR PLAN NAME!):</label>
                 <input id="name"
                        type="text"
                        class="form-control"
@@ -50,12 +55,20 @@
                         }
                     </div>
 
-                    <p>Selected Reading Days: @string.Join(", ", plan.ReadingDays)</p>
                 </div>
 
-                <button type="submit" class="btn btn-primary" @onclick="Generate">Create</button>
-                <p>Plan name: @plan.Name</p>
+                <div>
+                    <button type="button" class="btn btn-primary" @onclick="DownloadCsv">CSV</button>
+                    <button type="button" class="btn btn-primary" @onclick="DownloadiCalFile">iCal</button>
+                    <button type="reset" class="btn btn-primary">Reset</button>
 
+                    <div>
+                        @if (showAlert)
+                        {
+                            <MudAlert Severity="Severity.Warning" Variant="Variant.Outlined">@alertMessage</MudAlert>
+                        }
+                    </div>
+                </div>
             </div>
             <div class="form-group col-md-4">
                 <label class="h4">Books:</label>
@@ -106,11 +119,3 @@
     </div>
 
 </EditForm>
-
-<h3>To add:</h3>
-<ol>
-    <li>Button to clear everything out</li>
-    <li>Select CSV or iCal output</li>
-    <li>"Add in order of your desired reading"</li>
-    <li>Chronological books option?</li>
-</ol>

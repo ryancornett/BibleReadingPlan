@@ -1,7 +1,11 @@
-using Microsoft.JSInterop;
 using BiblePlan.Domain;
 using BiblePlan.Factories;
 using BiblePlan.Services;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Mvc.Diagnostics;
+using Microsoft.JSInterop;
+using MudBlazor;
+
 
 namespace BiblePlan.Shared
 {
@@ -123,14 +127,84 @@ namespace BiblePlan.Shared
             }
         }
 
-        private ReadingFactory readingFactory = new ReadingFactory();
-        private async Task Generate()
+        private bool showAlert = false;
+        private string alertMessage = string.Empty;
+        private CommaSeparatedFactory csvFactory = new CommaSeparatedFactory();
+        private CalFileFactory calFileFactory = new CalFileFactory();
+        private DownloadService downloadService = new DownloadService();
+
+        private async Task DownloadCsv()
         {
-            var readings = await readingFactory.GenerateReadings(plan);
-            for (int i = 0; i<readings.Count; i++)
+            if (await PlanIsValid())
             {
-                readings[i].ToReadToday.LogThis("", Result.Success);
+                string csvData = await csvFactory.GenerateCalendar(plan);
+
+                byte[] csvBytes = await downloadService.GenerateCsv(csvData);
+
+                string fileName = $"{plan.Name}.csv";
+                string base64 = Convert.ToBase64String(csvBytes);
+                string downloadLink = $"data:text/csv;charset=utf-8;base64,{base64}";
+
+                // Use JavaScript Interop to create a link element and trigger the download
+                await JSRuntime.InvokeVoidAsync("downloadFile", downloadLink, fileName);
+                plan = new Plan();
+                StateHasChanged();
             }
+        }
+
+        private async Task DownloadiCalFile()
+        {
+            if (await PlanIsValid())
+            {
+                string iCalData = await calFileFactory.GenerateCalendar(plan);
+
+                byte[] icalBytes = downloadService.GenerateICal(iCalData);
+
+                string fileName = $"{plan.Name}.ics";
+                string base64 = Convert.ToBase64String(icalBytes);
+                string downloadLink = $"data:text/calendar;charset=utf-8;base64,{base64}";
+
+                // Use JavaScript Interop to create a link element and trigger the download
+                await JSRuntime.InvokeVoidAsync("downloadFile", downloadLink, fileName);
+                plan = new Plan();
+                StateHasChanged();
+            }
+        }
+
+        private ReadingLogic logic = new ReadingLogic();
+
+        private async Task<bool> PlanIsValid()
+        {
+            var chapters = await logic.TotalChapters(plan);
+            var days = await logic.DaysInPlan(plan);
+            if (plan.Books.Count == 0)
+            {
+                ShowAlert("You need to add some books first!");
+                return false;
+            }
+            if (days.TotalDays > chapters)
+            {
+                ShowAlert("Don't you need to add some more books?");
+                return false;
+            }
+            if (days.TotalDays < 14)
+            {
+                ShowAlert("That's a mighty short plan ya got there!");
+                return false;
+            }
+            if (days.TotalDays > 732)
+            {
+                ShowAlert("Let's try a shorter plan, okay?");
+                return false;
+            }
+            else { return true; }
+            
+        }
+
+        private void ShowAlert(string message)
+        {
+            alertMessage = message;
+            showAlert = true;
             StateHasChanged();
         }
     }

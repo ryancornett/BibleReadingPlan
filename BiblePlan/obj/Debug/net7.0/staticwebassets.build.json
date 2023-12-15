@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gu38GxcYTKcdKx7pHSzKTbjeNJ3JZFD3x9EwLQ4JYvs=",
+  "Hash": "OdkrnofVOPcIHNIyJePzFODJdSbssGnM/pLcQmEqrrs=",
   "Source": "BiblePlan",
   "BasePath": "_content/BiblePlan",
   "Mode": "Default",
@@ -255,6 +255,23 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\download.js",
+      "SourceId": "BiblePlan",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\",
+      "BasePath": "_content/BiblePlan",
+      "RelativePath": "download.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\download.js"
+    },
+    {
       "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\favicon.png",
       "SourceId": "BiblePlan",
       "SourceType": "Discovered",
@@ -270,6 +287,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "C:\\Users\\clawh\\.nuget\\packages\\mudblazor\\6.11.1\\staticwebassets\\MudBlazor.min.css",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\clawh\\.nuget\\packages\\mudblazor\\6.11.1\\staticwebassets\\",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\clawh\\.nuget\\packages\\mudblazor\\6.11.1\\staticwebassets\\MudBlazor.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\clawh\\.nuget\\packages\\mudblazor\\6.11.1\\staticwebassets\\MudBlazor.min.js",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\clawh\\.nuget\\packages\\mudblazor\\6.11.1\\staticwebassets\\",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\clawh\\.nuget\\packages\\mudblazor\\6.11.1\\staticwebassets\\MudBlazor.min.js"
     }
   ]
 }

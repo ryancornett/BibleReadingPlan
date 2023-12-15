@@ -53,6 +53,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\download.js",
+      "PackagePath": "staticwebassets\\download.js"
+    },
+    {
       "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },

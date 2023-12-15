@@ -1,4 +1,5 @@
 using BiblePlan.Data;
+using MudBlazor.Services;
 
 // Get plan length from EndDate - StartDate - ((7 - Days) * weeks)
 // Get chapter weights and sum
@@ -11,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddMudServices();
 
 var app = builder.Build();
 
