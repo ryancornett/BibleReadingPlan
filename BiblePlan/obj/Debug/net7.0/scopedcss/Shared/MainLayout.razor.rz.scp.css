@@ -1,70 +1,48 @@
-.page[b-wj8pc1oomi] {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+header[b-wj8pc1oomi], footer[b-wj8pc1oomi] {
+    width: 100vw;
+    min-height: 5rem;
+    background-color: #000133;
+    color: white;
 }
 
-main[b-wj8pc1oomi] {
-    flex: 1;
+.josefin[b-wj8pc1oomi] {
+    font-family: 'Josefin Sans', sans-serif !important;
+    margin-top:1rem;
 }
 
-.sidebar[b-wj8pc1oomi] {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+#support[b-wj8pc1oomi] {
+    background-color: #0275d8;
+    color: white;
+    font-weight: bold;
+    transition: all linear 250ms;
 }
 
-.top-row[b-wj8pc1oomi] {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
-    justify-content: flex-end;
-    height: 3.5rem;
-    display: flex;
-    align-items: center;
+    #support > h6[b-wj8pc1oomi] {
+        padding: 0.6rem 0.75rem 0.25rem 0.75rem;
+    }
+
+    #support:hover[b-wj8pc1oomi] {
+        background-color: #0164f9;
+        color: white;
+        transition: all linear 250ms;
+    }
+
+header > a[b-wj8pc1oomi] {
+    text-decoration:none;
 }
 
-    .top-row[b-wj8pc1oomi]  a, .top-row .btn-link[b-wj8pc1oomi] {
-        white-space: nowrap;
-        margin-left: 1.5rem;
-    }
-
-    .top-row a:first-child[b-wj8pc1oomi] {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-@media (max-width: 640.98px) {
-    .top-row:not(.auth)[b-wj8pc1oomi] {
-        display: none;
-    }
-
-    .top-row.auth[b-wj8pc1oomi] {
-        justify-content: space-between;
-    }
-
-    .top-row a[b-wj8pc1oomi], .top-row .btn-link[b-wj8pc1oomi] {
-        margin-left: 0;
-    }
+.footer-link[b-wj8pc1oomi] {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition:all linear 250ms;
 }
 
-@media (min-width: 641px) {
-    .page[b-wj8pc1oomi] {
-        flex-direction: row;
+    .footer-link:hover[b-wj8pc1oomi] {
+        color: cornflowerblue;
+        transition: all linear 250ms;
     }
 
-    .sidebar[b-wj8pc1oomi] {
-        width: 250px;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
-
-    .top-row[b-wj8pc1oomi] {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }
-
-    .top-row[b-wj8pc1oomi], article[b-wj8pc1oomi] {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
-    }
+.font-size-100[b-wj8pc1oomi] {
+    font-size: 0.85rem;
 }

@@ -1,11 +1,8 @@
 using BiblePlan.Domain;
 using BiblePlan.Factories;
 using BiblePlan.Services;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc.Diagnostics;
 using Microsoft.JSInterop;
-using MudBlazor;
-
+using System.Text.RegularExpressions;
 
 namespace BiblePlan.Shared
 {
@@ -14,6 +11,9 @@ namespace BiblePlan.Shared
         static Plan plan = new Plan();
         private bool selectOldTestament = false;
         private bool selectNewTestament = false;
+        private List<int> OTDisplayRanges = new List<int>() { 0,8,8,8,16,8,24,8,32,7 };
+        private List<int> NTDisplayRanges = new List<int>() { 0,6,6,6,12,6,18,6,24,3 };
+
         private void ToggleBook(string selectedBook)
         {
             if (plan.Books.Contains(selectedBook))
@@ -76,11 +76,6 @@ namespace BiblePlan.Shared
             }
         }
 
-        private void ToggleAllBooks()
-        {
-            plan.Books.AddRange(Books.BookTitles);
-        }
-
         private void ToggleReadingDay(string selectedDay)
         {
             if (plan.ReadingDays.Contains(selectedDay))
@@ -93,35 +88,36 @@ namespace BiblePlan.Shared
             }
         }
 
-        private string showOldTestament = "+";
         private string oldClass = "collapsible";
-        private string showNewTestament = "+";
         private string newClass = "collapsible";
-        private string openClose = "my-1 plus-open_close";
+        private string plusOpen = "my-1 plus-open_close oi oi-plus";
+        private string minusClose = "my-1 plus-open_close oi oi-minus";
+        private string openCloseOld = "my-1 plus-open_close oi oi-plus";
+        private string openCloseNew = "my-1 plus-open_close oi oi-plus";
 
         private void ShowTestament(int t)
         {
-            if (t == 1 && showOldTestament == "+")
+            if (t == 1 && openCloseOld == plusOpen)
             {
-                showOldTestament = "-";
+                openCloseOld = minusClose;
                 oldClass = "collapsible.active";
                 StateHasChanged();
             }
-            else if (t == 1 && showOldTestament == "-")
+            else if (t == 1 && openCloseOld ==minusClose)
             {
-                showOldTestament = "+";
+                openCloseOld = plusOpen;
                 oldClass = "collapsible";
                 StateHasChanged();
             }
-            if (t == 2 && showNewTestament == "+")
+            if (t == 2 && openCloseNew == plusOpen)
             {
-                showNewTestament = "-";
+                openCloseNew = minusClose;
                 newClass = "collapsible.active";
                 StateHasChanged();
             }
-            else if (t == 2 && showNewTestament == "-")
+            else if (t == 2 && openCloseNew == minusClose)
             {
-                showNewTestament = "+";
+                openCloseNew = plusOpen;
                 newClass = "collapsible";
                 StateHasChanged();
             }
@@ -132,22 +128,36 @@ namespace BiblePlan.Shared
         private CommaSeparatedFactory csvFactory = new CommaSeparatedFactory();
         private CalFileFactory calFileFactory = new CalFileFactory();
         private DownloadService downloadService = new DownloadService();
+        private bool isLoading = false;
 
         private async Task DownloadCsv()
         {
             if (await PlanIsValid())
             {
-                string csvData = await csvFactory.GenerateCalendar(plan);
+                isLoading = true;
 
-                byte[] csvBytes = await downloadService.GenerateCsv(csvData);
+                try
+                {
+                    string csvData = await csvFactory.GenerateCalendar(plan);
 
-                string fileName = $"{plan.Name}.csv";
-                string base64 = Convert.ToBase64String(csvBytes);
-                string downloadLink = $"data:text/csv;charset=utf-8;base64,{base64}";
+                    byte[] csvBytes = await downloadService.GenerateCsv(csvData);
 
-                // Use JavaScript Interop to create a link element and trigger the download
-                await JSRuntime.InvokeVoidAsync("downloadFile", downloadLink, fileName);
-                plan = new Plan();
+                    string fileName = $"{plan.Name}.csv";
+                    string base64 = Convert.ToBase64String(csvBytes);
+                    string downloadLink = $"data:text/csv;charset=utf-8;base64,{base64}";
+
+                    await JSRuntime.InvokeVoidAsync("downloadFile", downloadLink, fileName);
+                    plan = new Plan();
+                }
+
+                catch (Exception ex)
+                {
+                    await ShowAlert("An error occured. Please try again");
+                    ex.LogThis(ex.ToString(), Result.Failure);
+                }
+
+                await Task.Delay(2000);
+                isLoading = false;
                 StateHasChanged();
             }
         }
@@ -156,55 +166,84 @@ namespace BiblePlan.Shared
         {
             if (await PlanIsValid())
             {
-                string iCalData = await calFileFactory.GenerateCalendar(plan);
+                isLoading = true;
 
-                byte[] icalBytes = downloadService.GenerateICal(iCalData);
+                try
+                {
+                    string iCalData = await calFileFactory.GenerateCalendar(plan);
 
-                string fileName = $"{plan.Name}.ics";
-                string base64 = Convert.ToBase64String(icalBytes);
-                string downloadLink = $"data:text/calendar;charset=utf-8;base64,{base64}";
+                    byte[] icalBytes = downloadService.GenerateICal(iCalData);
 
-                // Use JavaScript Interop to create a link element and trigger the download
-                await JSRuntime.InvokeVoidAsync("downloadFile", downloadLink, fileName);
-                plan = new Plan();
+                    string fileName = $"{plan.Name}.ics";
+                    string base64 = Convert.ToBase64String(icalBytes);
+                    string downloadLink = $"data:text/calendar;charset=utf-8;base64,{base64}";
+
+                    // Use JavaScript Interop to create a link element and trigger the download
+                    await JSRuntime.InvokeVoidAsync("downloadFile", downloadLink, fileName);
+                    plan = new Plan();
+                }
+                catch (Exception ex)
+                {
+                    await ShowAlert("An error occured. Please try again");
+                    ex.LogThis(ex.ToString(), Result.Failure);
+                }
+                
+                await Task.Delay(2000);
+                isLoading = false;
                 StateHasChanged();
             }
         }
 
         private ReadingLogic logic = new ReadingLogic();
 
+        private static string pattern = "[a-zA-Z0-9_-]{1,50}$";
         private async Task<bool> PlanIsValid()
         {
             var chapters = await logic.TotalChapters(plan);
             var days = await logic.DaysInPlan(plan);
+            bool isPlanNameValid = Regex.IsMatch(plan.Name, pattern);
+
+            if (!isPlanNameValid)
+            {
+                await ShowAlert("Name must contain letters, numbers, hyphens, or underscores only and 1-50 characters.");
+                return false;
+            }
             if (plan.Books.Count == 0)
             {
-                ShowAlert("You need to add some books first!");
+                await ShowAlert("You need to add some books first!");
                 return false;
             }
             if (days.TotalDays > chapters)
             {
-                ShowAlert("Don't you need to add some more books?");
+                await ShowAlert("Don't you need to add more books?");
                 return false;
             }
             if (days.TotalDays < 14)
             {
-                ShowAlert("That's a mighty short plan ya got there!");
+                await ShowAlert("That's a mighty short plan ya got there!");
                 return false;
             }
             if (days.TotalDays > 732)
             {
-                ShowAlert("Let's try a shorter plan, okay?");
+                await ShowAlert("Let's try a shorter plan, okay?");
+                return false;
+            }
+            if (plan.ReadingDays.Count == 0)
+            {
+                await ShowAlert("You selected no reading days. Are you trying to get me to divide by zero?");
                 return false;
             }
             else { return true; }
             
         }
-
-        private void ShowAlert(string message)
+        private async Task ShowAlert(string message)
         {
             alertMessage = message;
+            await JSRuntime.InvokeVoidAsync("console.log", message);
             showAlert = true;
+            StateHasChanged();
+            await Task.Delay(2700);
+            showAlert = false;
             StateHasChanged();
         }
     }

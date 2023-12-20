@@ -5,34 +5,46 @@
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
 
-<h1>Create a Reading Plan</h1>
-<h5><span class="alert-info">Add books in your desired reading order</span></h5>
+@if (isLoading)
+{
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <MudProgressCircular Color="Color.Info" Size="Size.Large" Indeterminate="true" />
+    </div>
+}
+
+@if (showAlert)
+{
+<div class="position-absolute top-50 start-50 translate-middle">
+        <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true">@alertMessage</MudAlert>
+</div>
+}
 
 <EditForm Model="plan">
-    <div class="container">
+    <div class="container p-4 bg-opacity-75 bg-white align-items-center mb-4">
         <div class="form-row row align-items-start">
             <div class="form-group col-md-4">
-                <label for="name">*Name (ADD REGEX FOR PLAN NAME!):</label>
+                <label for="name" class="fw-bold text-uppercase"><span class="oi oi-info" aria-hidden="true"></span> Plan name</label>
                 <input id="name"
                        type="text"
-                       class="form-control"
+                       autocomplete="on"
+                       class="form-control mb-2"
                 @bind-value="plan.Name"
                        required />
 
-                <label for="start">*Start date:</label>
+                <label for="start" class="fw-bold text-uppercase"><span class="oi oi-media-play" aria-hidden="true"></span> Start date</label>
                 <InputDate id="start"
-                           class="form-control"
+                           class="form-control mb-2"
                 @bind-Value="plan.StartDate" min="@DateTime.Now.ToString("yyyy-MM-dd")"
                            required />
 
-                <label for="end">*End date:</label>
+                <label for="end" class="fw-bold text-uppercase"><span class="oi oi-media-stop" aria-hidden="true"></span> End date</label>
                 <InputDate id="end"
-                           class="form-control"
+                           class="form-control mb-2"
                 @bind-Value="plan.EndDate" min="@DateTime.Now.AddDays(7).ToString("yyyy-MM-dd")"
                            required />
 
-                <label for="time">*Daily event time:</label>
-                <InputSelect id="time" class="form-control option-dropdown" @bind-Value="plan.StartTime">
+                <label for="time" class="fw-bold text-uppercase"><span class="oi oi-clock" aria-hidden="true"></span> Reading time</label>
+                <InputSelect id="time" class="form-control option-dropdown mb-2" @bind-Value="plan.StartTime">
                     <option class="option-dropdown" selected="selected" disabled>--select a time--</option>
                     @foreach (var time in Options.Times)
                     {
@@ -41,81 +53,111 @@
                 </InputSelect>
 
                 <div>
-                    <label>Reading Days:</label>
-                    <div>
-                        @foreach (var day in Options.Days)
-                        {
-                            <label>
-                                <input type="checkbox"
-                                       value="@day"
-                                       checked="@plan.ReadingDays.Contains(day)"
-                                @onchange="() => ToggleReadingDay(day)" />
-                                @day
-                            </label>
-                        }
+                    <label class="fw-bold text-uppercase"><span class="oi oi-list" aria-hidden="true"></span> Reading Days</label>
+                    <div class="mb-3 d-flex">
+                        <div class="d-flex flex-column">
+                            @foreach (var day in Options.Days.GetRange(0, 4))
+                            {
+                                <div>
+                                    <input type="checkbox"
+                                           id="@day"
+                                           value="@day"
+                                           checked="@plan.ReadingDays.Contains(day)"
+                                    @onchange="() => ToggleReadingDay(day)" />
+                                    <span class="me-2">@day</span>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            @foreach (var day in Options.Days.GetRange(4, 3))
+                            {
+                                <div>
+                                    <input type="checkbox"
+                                           id="@day"
+                                           value="@day"
+                                           checked="@plan.ReadingDays.Contains(day)"
+                                    @onchange="() => ToggleReadingDay(day)" />
+                                    <span class="me-2">@day</span>
+                                </div>
+                            }
+                        </div>
                     </div>
 
                 </div>
 
-                <div>
-                    <button type="button" class="btn btn-primary" @onclick="DownloadCsv">CSV</button>
-                    <button type="button" class="btn btn-primary" @onclick="DownloadiCalFile">iCal</button>
-                    <button type="reset" class="btn btn-primary">Reset</button>
-
-                    <div>
-                        @if (showAlert)
-                        {
-                            <MudAlert Severity="Severity.Warning" Variant="Variant.Outlined">@alertMessage</MudAlert>
-                        }
+                <div class="col-6">
+                    <div class="button-wrapper">
+                        <button type="button" class="btn btn-primary" @onclick="DownloadCsv">
+                            <span class="oi oi-list me-2" aria-hidden="true"></span> CSV</button>
+                        <button type="button" class="btn btn-primary" @onclick="DownloadiCalFile"><span class="oi oi-calendar me-2" aria-hidden="true"></span> iCal</button>
+                        <button type="reset" class="btn btn-primary"><span class="oi oi-reload me-2" aria-hidden="true"></span> Clear</button>
                     </div>
                 </div>
             </div>
-            <div class="form-group col-md-4">
-                <label class="h4">Books:</label>
-                <div class="my-2">
-                    <label class="me-1">
-                        <input type="checkbox"
-                        @onchange="() => ToggleOldTestament()" />
-                        Old Testament 
-                    </label>
+            <div class="form-group col-md-8">
+                <label class="fw-bold text-uppercase" aria-label="Books"><span class="oi oi-book" aria-hidden="true"></span> Books</label>
+                <h6><span class="badge bg-secondary">Add books in your desired reading order</span></h6>
+                <div class="my-2 testament-list">
+                    <div>
+                        <input id="old-testament" type="checkbox"
+                                @onchange="() => ToggleOldTestament()" />
+                        Old Testament
+                        <span class="@openCloseOld" @onclick="() => ShowTestament(1)"></span>
+                    </div>
 
-                    <span class="@openClose" @onclick="() => ShowTestament(1)"> @showOldTestament</span>
-
-                    <label class="ms-2">
-                        <input type="checkbox"
-                        @onchange="() => ToggleNewTestament()" />
+                    <div>
+                        <input id="new-testament" type="checkbox"
+                                @onchange="() => ToggleNewTestament()" />
                         New Testament
-                    </label>
-
-                    <span class="@openClose" @onclick="() => ShowTestament(2)"> @showNewTestament</span>
-
+                        <span class="@openCloseNew" @onclick="() => ShowTestament(2)"></span>
+                    </div>
                 </div>
+
                 <div class="my-3 @oldClass">
-                    @foreach (var book in Books.OldTestament)
-                    {
-                        <label class="me-2">
-                            <input type="checkbox"
-                                   value="@book"
-                                   checked="@plan.Books.Contains(book)"
-                            @onchange="() => ToggleBook(book)" />
-                            @book
-                        </label>
-                    }
+                    <div class="mb-3 book-list">
+                        @for (int i = 0; i < OTDisplayRanges.Count; i++)
+                        {
+                            <div class="d-flex flex-column me-2">
+                                @foreach (var book in Books.OldTestament.GetRange(OTDisplayRanges[i], OTDisplayRanges[i + 1]))
+                                {
+                                    <div>
+                                        <input type="checkbox"
+                                               id="@book"
+                                               value="@book"
+                                               checked="@plan.Books.Contains(book)"
+                                        @onchange="() => ToggleBook(book)" />
+                                        @book
+                                    </div>
+                                }
+                            </div>
+                            i++;
+                        }
+                    </div>
                 </div>
+
                 <div class="my-3 @newClass">
-                    @foreach (var book in Books.NewTestament)
-                    {
-                        <label class="me-2">
-                            <input type="checkbox"
-                                   value="@book"
-                                   checked="@plan.Books.Contains(book)"
-                            @onchange="() => ToggleBook(book)" />
-                            @book
-                        </label>
-                    }
+                    <div class="mb-3 book-list">
+                        @for (int i = 0; i < NTDisplayRanges.Count; i++)
+                        {
+                            <div class="d-flex flex-column me-2">
+                                @foreach (var book in Books.NewTestament.GetRange(NTDisplayRanges[i], NTDisplayRanges[i + 1]))
+                                {
+                                    <div>
+                                        <input type="checkbox"
+                                               id="@book"
+                                               value="@book"
+                                               checked="@plan.Books.Contains(book)"
+                                        @onchange="() => ToggleBook(book)" />
+                                        @book
+                                    </div>
+                                }
+                            </div>
+                            i++;
+                        }
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </EditForm>

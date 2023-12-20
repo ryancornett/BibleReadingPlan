@@ -61,6 +61,14 @@
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
+      "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\images\\bg-2.webp",
+      "PackagePath": "staticwebassets\\images\\bg-2.webp"
+    },
+    {
+      "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\images\\bg.webp",
+      "PackagePath": "staticwebassets\\images\\bg.webp"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.BiblePlan.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

@@ -14,14 +14,52 @@ collapsible.active[b-nslmltakfo] {
     font-size: 1.25rem;
     cursor: pointer;
     transition: all ease 150ms;
-    min-width: 10vw;
 }
 
 .plus-open_close.active[b-nslmltakfo] {
-    color: orangered;
-    font-size: 4rem;
+    font-size: 2rem;
 }
 
-.option-dropdown[b-nslmltakfo] {
-    z-index: 1000;
+.book-list[b-nslmltakfo] {
+    display:block;
+}
+
+.button-wrapper[b-nslmltakfo] {
+    display:block;
+}
+
+.button-wrapper > button[b-nslmltakfo] {
+    display:inline-flex;
+    padding:0.5rem 1rem;
+    justify-content:space-around;
+    align-items:center;
+    margin-right:1rem;
+}
+
+.testament-list[b-nslmltakfo] {
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:column;
+}
+
+@media screen and (min-width: 1000px) {
+    .button-wrapper[b-nslmltakfo] {
+        display:flex;
+        flex-direction: row;
+        justify-content:space-between;
+    }
+
+    .testament-list[b-nslmltakfo] {
+        flex-direction: row;
+    }
+
+    .testament-list > div:first-child[b-nslmltakfo] {
+        margin-right: 1rem;
+    }
+
+    .book-list[b-nslmltakfo] {
+        display:flex;
+        flex-direction:row;
+        margin-right:0.5rem;
+    }
 }

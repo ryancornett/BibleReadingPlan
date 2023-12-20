@@ -7,7 +7,7 @@ namespace BiblePlan.Services
         public static void LogThis<T>(this T sender, string message, Result result)
         {
             string logFilePath = "./log.txt";
-            string logEntry = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} : {sender} - {result} - {message}";
+            string logEntry = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}\n{sender}\n{result}\n{message}";
 
             try
             {

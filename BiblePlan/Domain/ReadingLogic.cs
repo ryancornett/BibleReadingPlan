@@ -2,9 +2,11 @@
 
 public class ReadingLogic
 {
+
     public async Task<TimeSpan> DaysInPlan(Plan plan)
     {
-        return plan.EndDate.Date - plan.StartDate.Date;
+        TimeSpan timeDifference = plan.EndDate.Date - plan.StartDate.Date;
+        return timeDifference + TimeSpan.FromDays(1);
     }
 
     public async Task<int> TotalNumberOfDays(TimeSpan span)

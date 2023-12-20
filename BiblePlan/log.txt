@@ -1,0 +1,6 @@
+2023-12-20 14:02:40
+System.Collections.Generic.List`1[BiblePlan.Domain.Reading]
+Success
+Plan: Morning
+Readings: 366
+Dates: 366

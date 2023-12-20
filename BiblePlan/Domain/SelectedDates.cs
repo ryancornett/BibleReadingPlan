@@ -1,4 +1,6 @@
-﻿namespace BiblePlan.Domain;
+﻿using BiblePlan.Services;
+
+namespace BiblePlan.Domain;
 
 public class SelectedDates
 {

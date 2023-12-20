@@ -1,11 +1,4 @@
-using BiblePlan.Data;
 using MudBlazor.Services;
-
-// Get plan length from EndDate - StartDate - ((7 - Days) * weeks)
-// Get chapter weights and sum
-// Sum/Length = average daily weight of reading
-// Pair readings with actual dates
-
 
 var builder = WebApplication.CreateBuilder(args);
 

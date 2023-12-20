@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OdkrnofVOPcIHNIyJePzFODJdSbssGnM/pLcQmEqrrs=",
+  "Hash": "2gQju8cANfprmeSVL78DcxmjqtNB5TSZ4WXdZpwLIXk=",
   "Source": "BiblePlan",
   "BasePath": "_content/BiblePlan",
   "Mode": "Default",
@@ -287,6 +287,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\images\\bg.webp",
+      "SourceId": "BiblePlan",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\",
+      "BasePath": "_content/BiblePlan",
+      "RelativePath": "images/bg.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\bg.webp"
+    },
+    {
+      "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\images\\bg-2.webp",
+      "SourceId": "BiblePlan",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\",
+      "BasePath": "_content/BiblePlan",
+      "RelativePath": "images/bg-2.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\bg-2.webp"
     },
     {
       "Identity": "C:\\Users\\clawh\\.nuget\\packages\\mudblazor\\6.11.1\\staticwebassets\\MudBlazor.min.css",

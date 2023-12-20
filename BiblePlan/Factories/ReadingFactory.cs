@@ -54,7 +54,7 @@ public class ReadingFactory
             var currentBookWordCounts = Books.BooksWithChapterWordCounts[bookTitlesInPlan[workingBook]];
             wordCount = currentBookWordCounts[workingChapter];
 
-            while (wordCount < ((_runningCount / daysRemaining) - 100))
+            while (wordCount < (_runningCount / daysRemaining) - 100)
             {
                 if (daysRemaining == _chaptersRemaining) { break; }
                 workingChapter++;
@@ -94,7 +94,7 @@ public class ReadingFactory
             daysRemaining--;
         }
 
-        readings.LogThis($"Number of readings = {readings.Count} - ", Result.Unknown);
+        readings.LogThis($"Plan: {plan.Name}\nReadings: {readings.Count}\nDates: {dates.Count}", Result.Success);
         return (Readings: readings, Dates: dates);
     }
 }

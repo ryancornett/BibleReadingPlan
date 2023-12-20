@@ -1,4 +1,5 @@
 ﻿using BiblePlan.Domain;
+using BiblePlan.Services;
 
 namespace BiblePlan.Factories
 {
@@ -10,6 +11,7 @@ namespace BiblePlan.Factories
             var result = await factory.GenerateReadings(plan);
             var dates = result.Dates;
             var readings = result.Readings;
+
             var csv = "Date,Reading";
             for (int i = 0; i < dates.Count; i++)
             {
