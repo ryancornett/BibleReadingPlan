@@ -4,7 +4,7 @@ namespace BiblePlan.Services
 {
     public class DownloadService
     {
-        public async Task<byte[]> GenerateCsv(string csvData)
+        public async Task<byte[]> GenerateRaw(string data)
         {
             byte[] csvBytes;
 
@@ -12,7 +12,7 @@ namespace BiblePlan.Services
             {
                 using (StreamWriter writer = new StreamWriter(memoryStream, Encoding.UTF8))
                 {
-                    await writer.WriteAsync(csvData);
+                    await writer.WriteAsync(data);
                 }
 
                 csvBytes = memoryStream.ToArray();

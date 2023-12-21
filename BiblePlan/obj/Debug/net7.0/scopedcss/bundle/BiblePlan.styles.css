@@ -29,13 +29,20 @@ collapsible.active[b-nslmltakfo] {
     display:block;
 }
 
-.button-wrapper > button[b-nslmltakfo] {
-    display:inline-flex;
-    padding:0.5rem 1rem;
-    justify-content:space-around;
-    align-items:center;
-    margin-right:1rem;
-}
+    .button-wrapper > button[b-nslmltakfo] {
+        display: inline-flex;
+        padding: 0.5rem 1rem;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        background-color: #1255b6 !important;
+        transition: all linear 250ms;
+    }
+
+        .button-wrapper > button:hover[b-nslmltakfo] {
+            background-color: #0275d8 !important;
+            transition: all linear 250ms;
+        }
 
 .testament-list[b-nslmltakfo] {
     display:flex;
@@ -49,6 +56,11 @@ collapsible.active[b-nslmltakfo] {
         flex-direction: row;
         justify-content:space-between;
     }
+
+        .button-wrapper > button[b-nslmltakfo] {
+            margin-bottom: 0;
+            margin-right: 0.5rem;
+        }
 
     .testament-list[b-nslmltakfo] {
         flex-direction: row;
@@ -65,11 +77,19 @@ collapsible.active[b-nslmltakfo] {
     }
 }
 /* _content/BiblePlan/Shared/MainLayout.razor.rz.scp.css */
+header[b-wj8pc1oomi] {
+    filter: drop-shadow(25px 0px 5px #2376fc);
+}
+
 header[b-wj8pc1oomi], footer[b-wj8pc1oomi] {
     width: 100vw;
     min-height: 5rem;
     background-color: #000133;
     color: white;
+}
+
+footer[b-wj8pc1oomi] {
+    filter: drop-shadow(-25px 0px 5px #2376fc);
 }
 
 .josefin[b-wj8pc1oomi] {
@@ -78,7 +98,7 @@ header[b-wj8pc1oomi], footer[b-wj8pc1oomi] {
 }
 
 #support[b-wj8pc1oomi] {
-    background-color: #0275d8;
+    background-color: #1255b6;
     color: white;
     font-weight: bold;
     transition: all linear 250ms;
@@ -89,7 +109,7 @@ header[b-wj8pc1oomi], footer[b-wj8pc1oomi] {
     }
 
     #support:hover[b-wj8pc1oomi] {
-        background-color: #0164f9;
+        background-color: #0275d8;
         color: white;
         transition: all linear 250ms;
     }

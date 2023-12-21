@@ -2,6 +2,7 @@ using BiblePlan.Domain;
 using BiblePlan.Factories;
 using BiblePlan.Services;
 using Microsoft.JSInterop;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace BiblePlan.Shared
@@ -11,7 +12,7 @@ namespace BiblePlan.Shared
         static Plan plan = new Plan();
         private bool selectOldTestament = false;
         private bool selectNewTestament = false;
-        private List<int> OTDisplayRanges = new List<int>() { 0,8,8,8,16,8,24,8,32,7 };
+        private List<int> OTDisplayRanges = new List<int>() { 0,7,7,7,14,7,21,7,28,7,35,4 };
         private List<int> NTDisplayRanges = new List<int>() { 0,6,6,6,12,6,18,6,24,3 };
 
         private void ToggleBook(string selectedBook)
@@ -127,6 +128,7 @@ namespace BiblePlan.Shared
         private string alertMessage = string.Empty;
         private CommaSeparatedFactory csvFactory = new CommaSeparatedFactory();
         private CalFileFactory calFileFactory = new CalFileFactory();
+        private TextFileFactory textFileFactory = new TextFileFactory();
         private DownloadService downloadService = new DownloadService();
         private bool isLoading = false;
 
@@ -139,13 +141,10 @@ namespace BiblePlan.Shared
                 try
                 {
                     string csvData = await csvFactory.GenerateCalendar(plan);
-
-                    byte[] csvBytes = await downloadService.GenerateCsv(csvData);
-
+                    byte[] csvBytes = await downloadService.GenerateRaw(csvData);
                     string fileName = $"{plan.Name}.csv";
                     string base64 = Convert.ToBase64String(csvBytes);
                     string downloadLink = $"data:text/csv;charset=utf-8;base64,{base64}";
-
                     await JSRuntime.InvokeVoidAsync("downloadFile", downloadLink, fileName);
                     plan = new Plan();
                 }
@@ -153,7 +152,6 @@ namespace BiblePlan.Shared
                 catch (Exception ex)
                 {
                     await ShowAlert("An error occured. Please try again");
-                    ex.LogThis(ex.ToString(), Result.Failure);
                 }
 
                 await Task.Delay(2000);
@@ -171,23 +169,44 @@ namespace BiblePlan.Shared
                 try
                 {
                     string iCalData = await calFileFactory.GenerateCalendar(plan);
-
                     byte[] icalBytes = downloadService.GenerateICal(iCalData);
-
                     string fileName = $"{plan.Name}.ics";
                     string base64 = Convert.ToBase64String(icalBytes);
                     string downloadLink = $"data:text/calendar;charset=utf-8;base64,{base64}";
-
-                    // Use JavaScript Interop to create a link element and trigger the download
                     await JSRuntime.InvokeVoidAsync("downloadFile", downloadLink, fileName);
                     plan = new Plan();
                 }
                 catch (Exception ex)
                 {
                     await ShowAlert("An error occured. Please try again");
-                    ex.LogThis(ex.ToString(), Result.Failure);
                 }
                 
+                await Task.Delay(2000);
+                isLoading = false;
+                StateHasChanged();
+            }
+        }
+
+        private async Task DownloadTextFile()
+        {
+            if (await PlanIsValid())
+            {
+                isLoading = true;
+
+                try
+                {
+                    string textData = await textFileFactory.GenerateCalendar(plan);
+                    string fileName = $"{plan.Name}.pdf";
+                    string base64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(textData));
+                    string encodedContent = $"data:text/pdf;charset=utf-8;base64,{Uri.EscapeDataString(base64)}";
+                    await JSRuntime.InvokeVoidAsync("openPrintDialog", encodedContent, fileName);
+                    plan = new Plan();
+                }
+                catch (Exception ex)
+                {
+                    await ShowAlert("An error occured. Please try again");
+                }
+
                 await Task.Delay(2000);
                 isLoading = false;
                 StateHasChanged();
@@ -239,7 +258,6 @@ namespace BiblePlan.Shared
         private async Task ShowAlert(string message)
         {
             alertMessage = message;
-            await JSRuntime.InvokeVoidAsync("console.log", message);
             showAlert = true;
             StateHasChanged();
             await Task.Delay(2700);

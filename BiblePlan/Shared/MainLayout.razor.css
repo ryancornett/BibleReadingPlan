@@ -1,8 +1,16 @@
+header {
+    filter: drop-shadow(25px 0px 5px #2376fc);
+}
+
 header, footer {
     width: 100vw;
     min-height: 5rem;
     background-color: #000133;
     color: white;
+}
+
+footer {
+    filter: drop-shadow(-25px 0px 5px #2376fc);
 }
 
 .josefin {
@@ -11,7 +19,7 @@ header, footer {
 }
 
 #support {
-    background-color: #0275d8;
+    background-color: #1255b6;
     color: white;
     font-weight: bold;
     transition: all linear 250ms;
@@ -22,7 +30,7 @@ header, footer {
     }
 
     #support:hover {
-        background-color: #0164f9;
+        background-color: #0275d8;
         color: white;
         transition: all linear 250ms;
     }

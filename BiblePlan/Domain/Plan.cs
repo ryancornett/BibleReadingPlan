@@ -2,11 +2,20 @@
 {
     public class Plan
     {
-        public string Name { get; set; } = "Morning";
+        public string Name { get; set; }
         public List<string> Books { get; set; } = new List<string>();
-        public DateTime StartDate { get; set; } = DateTime.Now;
-        public DateTime EndDate { get; set; } = DateTime.Now.AddDays(14);
-        public string StartTime { get; set; } = "6:00 AM";
-        public List<string> ReadingDays { get; set; } = new List<string>() { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string StartTime { get; set; }
+        public List<string> ReadingDays { get; set; }
+
+        public Plan()
+        {
+            Name = "Default";
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now.AddDays(14);
+            StartTime = "6:30 AM";
+            ReadingDays = new List<string>() { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+        }
     }
 }

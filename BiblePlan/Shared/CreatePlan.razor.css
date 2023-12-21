@@ -28,13 +28,20 @@ collapsible.active {
     display:block;
 }
 
-.button-wrapper > button {
-    display:inline-flex;
-    padding:0.5rem 1rem;
-    justify-content:space-around;
-    align-items:center;
-    margin-right:1rem;
-}
+    .button-wrapper > button {
+        display: inline-flex;
+        padding: 0.5rem 1rem;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        background-color: #1255b6 !important;
+        transition: all linear 250ms;
+    }
+
+        .button-wrapper > button:hover {
+            background-color: #0275d8 !important;
+            transition: all linear 250ms;
+        }
 
 .testament-list {
     display:flex;
@@ -48,6 +55,11 @@ collapsible.active {
         flex-direction: row;
         justify-content:space-between;
     }
+
+        .button-wrapper > button {
+            margin-bottom: 0;
+            margin-right: 0.5rem;
+        }
 
     .testament-list {
         flex-direction: row;

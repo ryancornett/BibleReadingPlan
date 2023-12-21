@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
+      "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\css\\pdf.css",
+      "PackagePath": "staticwebassets\\css\\pdf.css"
+    },
+    {
       "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -61,12 +65,16 @@
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\images\\bg-2.webp",
-      "PackagePath": "staticwebassets\\images\\bg-2.webp"
-    },
-    {
       "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\images\\bg.webp",
       "PackagePath": "staticwebassets\\images\\bg.webp"
+    },
+    {
+      "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\original-favicon.png",
+      "PackagePath": "staticwebassets\\original-favicon.png"
+    },
+    {
+      "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\print-dialog.js",
+      "PackagePath": "staticwebassets\\print-dialog.js"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.BiblePlan.Microsoft.AspNetCore.StaticWebAssets.props",

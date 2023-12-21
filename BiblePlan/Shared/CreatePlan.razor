@@ -7,14 +7,14 @@
 
 @if (isLoading)
 {
-    <div class="position-absolute top-50 start-50 translate-middle">
+    <div class="position-absolute top-50 start-50 translate-middle" aria-label="spinning loading disc">
         <MudProgressCircular Color="Color.Info" Size="Size.Large" Indeterminate="true" />
     </div>
 }
 
 @if (showAlert)
 {
-<div class="position-absolute top-50 start-50 translate-middle">
+<div class="position-absolute top-50 start-50 translate-middle" aria-label="alert message">
         <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Dense="true">@alertMessage</MudAlert>
 </div>
 }
@@ -25,22 +25,25 @@
             <div class="form-group col-md-4">
                 <label for="name" class="fw-bold text-uppercase"><span class="oi oi-info" aria-hidden="true"></span> Plan name</label>
                 <input id="name"
+                       aria-label="plan name input field"
                        type="text"
                        autocomplete="on"
                        class="form-control mb-2"
-                @bind-value="plan.Name"
+                       @bind-value="plan.Name"
                        required />
 
                 <label for="start" class="fw-bold text-uppercase"><span class="oi oi-media-play" aria-hidden="true"></span> Start date</label>
                 <InputDate id="start"
+                           aria-label="start date calendar picker or text input in yyyy/MM/dd format"
                            class="form-control mb-2"
-                @bind-Value="plan.StartDate" min="@DateTime.Now.ToString("yyyy-MM-dd")"
+                           @bind-Value="plan.StartDate" min="@DateTime.Now.ToString("yyyy-MM-dd")"
                            required />
 
                 <label for="end" class="fw-bold text-uppercase"><span class="oi oi-media-stop" aria-hidden="true"></span> End date</label>
                 <InputDate id="end"
+                           aria-label="end date calendar picker or text input in yyyy/MM/dd format"
                            class="form-control mb-2"
-                @bind-Value="plan.EndDate" min="@DateTime.Now.AddDays(7).ToString("yyyy-MM-dd")"
+                           @bind-Value="plan.EndDate" min="@DateTime.Now.AddDays(7).ToString("yyyy-MM-dd")"
                            required />
 
                 <label for="time" class="fw-bold text-uppercase"><span class="oi oi-clock" aria-hidden="true"></span> Reading time</label>
@@ -48,7 +51,7 @@
                     <option class="option-dropdown" selected="selected" disabled>--select a time--</option>
                     @foreach (var time in Options.Times)
                     {
-                        <option class="option-dropdown" @key=time value=@time >@time</option>
+                        <option class="option-dropdown" aria-label="@time" @key=time value=@time >@time</option>
                     }
                 </InputSelect>
 
@@ -61,10 +64,11 @@
                                 <div>
                                     <input type="checkbox"
                                            id="@day"
+                                           aria-label="@day"
                                            value="@day"
                                            checked="@plan.ReadingDays.Contains(day)"
-                                    @onchange="() => ToggleReadingDay(day)" />
-                                    <span class="me-2">@day</span>
+                                           @onchange="() => ToggleReadingDay(day)" />
+                                           <span class="me-2">@day</span>
                                 </div>
                             }
                         </div>
@@ -75,10 +79,11 @@
                                 <div>
                                     <input type="checkbox"
                                            id="@day"
+                                           aria-label="@day"
                                            value="@day"
                                            checked="@plan.ReadingDays.Contains(day)"
-                                    @onchange="() => ToggleReadingDay(day)" />
-                                    <span class="me-2">@day</span>
+                                           @onchange="() => ToggleReadingDay(day)" />
+                                           <span class="me-2">@day</span>
                                 </div>
                             }
                         </div>
@@ -88,26 +93,27 @@
 
                 <div class="col-6">
                     <div class="button-wrapper">
-                        <button type="button" class="btn btn-primary" @onclick="DownloadCsv">
-                            <span class="oi oi-list me-2" aria-hidden="true"></span> CSV</button>
-                        <button type="button" class="btn btn-primary" @onclick="DownloadiCalFile"><span class="oi oi-calendar me-2" aria-hidden="true"></span> iCal</button>
-                        <button type="reset" class="btn btn-primary"><span class="oi oi-reload me-2" aria-hidden="true"></span> Clear</button>
+                        <button type="button" class="btn btn-primary" aria-label="download CSV file" @onclick="DownloadCsv">
+                            <span class="oi oi-spreadsheet me-1" aria-hidden="true"></span> CSV</button>
+                        <button type="button" class="btn btn-primary" aria-label="download iCAL file" @onclick="DownloadiCalFile"><span class="oi oi-calendar me-1" aria-hidden="true"></span> iCal</button>
+                        <button type="button" class="btn btn-primary" aria-label="download PDF file or print" @onclick="DownloadTextFile"><span class="oi oi-print me-1" aria-hidden="true"></span> Print</button>
+                        <button type="reset" aria-label="reset all plan information inputs" class="btn btn-primary"><MudIcon Icon=@Icons.Material.Filled.PlaylistRemove aria-hidden="true"/> Clear</button>
                     </div>
                 </div>
             </div>
             <div class="form-group col-md-8">
-                <label class="fw-bold text-uppercase" aria-label="Books"><span class="oi oi-book" aria-hidden="true"></span> Books</label>
+                <label class="fw-bold text-uppercase" aria-label="books"><span class="oi oi-book" aria-hidden="true"></span> Books</label>
                 <h6><span class="badge bg-secondary">Add books in your desired reading order</span></h6>
                 <div class="my-2 testament-list">
                     <div>
-                        <input id="old-testament" type="checkbox"
+                        <input id="old-testament" type="checkbox" aria-label="toggle all old testament books"
                                 @onchange="() => ToggleOldTestament()" />
                         Old Testament
                         <span class="@openCloseOld" @onclick="() => ShowTestament(1)"></span>
                     </div>
 
                     <div>
-                        <input id="new-testament" type="checkbox"
+                        <input id="new-testament" type="checkbox" aria-label="toggle all new testament books"
                                 @onchange="() => ToggleNewTestament()" />
                         New Testament
                         <span class="@openCloseNew" @onclick="() => ShowTestament(2)"></span>
@@ -124,6 +130,7 @@
                                     <div>
                                         <input type="checkbox"
                                                id="@book"
+                                               aria-label="@book"
                                                value="@book"
                                                checked="@plan.Books.Contains(book)"
                                         @onchange="() => ToggleBook(book)" />
@@ -146,6 +153,7 @@
                                     <div>
                                         <input type="checkbox"
                                                id="@book"
+                                               aria-label="@book"
                                                value="@book"
                                                checked="@plan.Books.Contains(book)"
                                         @onchange="() => ToggleBook(book)" />

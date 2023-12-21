@@ -1,5 +1,4 @@
 ﻿using BiblePlan.Domain;
-using BiblePlan.Services;
 
 namespace BiblePlan.Factories
 {

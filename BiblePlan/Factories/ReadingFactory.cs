@@ -78,7 +78,7 @@ public class ReadingFactory
                         }
                         catch (Exception e)
                         {
-                            e.LogThis($"{e} is the exception on word count = {wordCount} and working book {bookTitlesInPlan[workingBook]} in working chapter {workingChapter}", Result.Failure);
+                            break;
                         }
                     }
                 }
@@ -94,7 +94,6 @@ public class ReadingFactory
             daysRemaining--;
         }
 
-        readings.LogThis($"Plan: {plan.Name}\nReadings: {readings.Count}\nDates: {dates.Count}", Result.Success);
         return (Readings: readings, Dates: dates);
     }
 }

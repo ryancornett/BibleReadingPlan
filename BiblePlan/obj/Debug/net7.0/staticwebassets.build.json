@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2gQju8cANfprmeSVL78DcxmjqtNB5TSZ4WXdZpwLIXk=",
+  "Hash": "TJ2B7GQVjCLhZGKeDdX7+PuIebb7FHvIw9sYGSH+bhg=",
   "Source": "BiblePlan",
   "BasePath": "_content/BiblePlan",
   "Mode": "Default",
@@ -238,6 +238,23 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
+      "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\css\\pdf.css",
+      "SourceId": "BiblePlan",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\",
+      "BasePath": "_content/BiblePlan",
+      "RelativePath": "css/pdf.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\pdf.css"
+    },
+    {
       "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\css\\site.css",
       "SourceId": "BiblePlan",
       "SourceType": "Discovered",
@@ -306,12 +323,12 @@
       "OriginalItemSpec": "wwwroot\\images\\bg.webp"
     },
     {
-      "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\images\\bg-2.webp",
+      "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\original-favicon.png",
       "SourceId": "BiblePlan",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\",
       "BasePath": "_content/BiblePlan",
-      "RelativePath": "images/bg-2.webp",
+      "RelativePath": "original-favicon.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -320,7 +337,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\bg-2.webp"
+      "OriginalItemSpec": "wwwroot\\original-favicon.png"
+    },
+    {
+      "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\print-dialog.js",
+      "SourceId": "BiblePlan",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\",
+      "BasePath": "_content/BiblePlan",
+      "RelativePath": "print-dialog.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\print-dialog.js"
     },
     {
       "Identity": "C:\\Users\\clawh\\.nuget\\packages\\mudblazor\\6.11.1\\staticwebassets\\MudBlazor.min.css",

@@ -1,6 +1,4 @@
-﻿using BiblePlan.Domain;
-
-namespace BiblePlan.Services
+﻿namespace BiblePlan.Services
 {
     public static class Logger
     {
