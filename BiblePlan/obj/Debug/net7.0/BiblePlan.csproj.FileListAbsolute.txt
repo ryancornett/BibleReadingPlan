@@ -23,7 +23,6 @@ C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\staticwebassets.pack.json
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\staticwebassets.build.json
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\staticwebassets.development.json
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
-C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\scopedcss\bundle\BiblePlan.styles.css
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\scopedcss\projectbundle\BiblePlan.bundle.scp.css
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\BiblePlan.dll
@@ -44,3 +43,4 @@ C:\CS\BiblePlan\BiblePlan\bin\Debug\net7.0\Microsoft.JSInterop.dll
 C:\CS\BiblePlan\BiblePlan\bin\Debug\net7.0\MudBlazor.dll
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\BiblePlan.csproj.AssemblyReference.cache
 C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\BiblePlan.csproj.CopyComplete
+C:\CS\BiblePlan\BiblePlan\obj\Debug\net7.0\scopedcss\Shared\Printable.razor.rz.scp.css

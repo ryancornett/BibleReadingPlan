@@ -1,0 +1,94 @@
+﻿@inject IJSRuntime JSRuntime
+@inject PrintService PrintService
+
+@page "/print"
+@using BiblePlan.Domain;
+@using BiblePlan.Services;
+@using MudBlazor;
+
+@layout PrintLayout
+<PageTitle>Custom Plan: @title</PageTitle>
+<h2 class="text-center">@title</h2>
+
+<MudTable Items="@GetTableItems()" Dense="true">
+    <HeaderContent>
+        @foreach (var day in days)
+        {
+            <MudTh><div class="fw-bold text-center day-header">@day.ToUpper()</div></MudTh>
+        }
+    </HeaderContent>
+    <RowTemplate>
+        @foreach (var item in context)
+        {
+            <MudTd>
+                <div class="cell fw-bold">@item.DateString</div>
+                <div class="cell">@item.SelectedReading</div>
+            </MudTd>
+        }
+    </RowTemplate>
+</MudTable>
+
+
+@code
+{
+    private string title;
+    public List<string> dates;
+    private List<Reading> readings;
+    public List<string> days;
+    private int a = 0;
+    private List<List<TableRowData>> table;
+
+    protected override Task OnInitializedAsync()
+    {
+        title = PrintService.Name;
+        dates = PrintService.Dates;
+        readings = PrintService.Readings;
+        days = PrintService.Days;
+        table = GetTableItems();
+        return base.OnInitializedAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("printPage");
+    }
+
+    
+    private List<List<TableRowData>> GetTableItems()
+    {
+        var count = dates.Count;
+        var tableItems = new List<List<TableRowData>>();
+
+        for (int i = 0; i < count; i += days.Count)
+        {
+            var rowItems = new List<TableRowData>();
+
+            for (int j = 0; j < days.Count && i + j < count; j++)
+            {
+                var rowData = new TableRowData();
+
+                if (i + j < dates.Count)
+                {
+                    rowData.DateString = dates[i + j];
+                }
+
+                if (i + j < readings.Count)
+                {
+                    rowData.SelectedReading = readings[i + j].ToReadToday;
+                }
+
+                rowItems.Add(rowData);
+            }
+
+            tableItems.Add(rowItems);
+        }
+
+        return tableItems;
+    }
+
+    public class TableRowData
+    {
+        public string DateString { get; set; }
+        public string SelectedReading { get; set; }
+    }
+}

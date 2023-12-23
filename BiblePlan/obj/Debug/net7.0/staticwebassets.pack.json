@@ -49,10 +49,6 @@
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\css\\pdf.css",
-      "PackagePath": "staticwebassets\\css\\pdf.css"
-    },
-    {
       "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -69,8 +65,8 @@
       "PackagePath": "staticwebassets\\images\\bg.webp"
     },
     {
-      "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\original-favicon.png",
-      "PackagePath": "staticwebassets\\original-favicon.png"
+      "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\images\\new-bg.webp",
+      "PackagePath": "staticwebassets\\images\\new-bg.webp"
     },
     {
       "Id": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\print-dialog.js",

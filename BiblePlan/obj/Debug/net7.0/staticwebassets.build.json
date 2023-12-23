@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TJ2B7GQVjCLhZGKeDdX7+PuIebb7FHvIw9sYGSH+bhg=",
+  "Hash": "zi/i5SCmoXtAKHv4tlXsa7xBcyZGWAY+CSZ4ezGgAYg=",
   "Source": "BiblePlan",
   "BasePath": "_content/BiblePlan",
   "Mode": "Default",
@@ -238,23 +238,6 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
-      "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\css\\pdf.css",
-      "SourceId": "BiblePlan",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\",
-      "BasePath": "_content/BiblePlan",
-      "RelativePath": "css/pdf.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\pdf.css"
-    },
-    {
       "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\css\\site.css",
       "SourceId": "BiblePlan",
       "SourceType": "Discovered",
@@ -323,12 +306,12 @@
       "OriginalItemSpec": "wwwroot\\images\\bg.webp"
     },
     {
-      "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\original-favicon.png",
+      "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\images\\new-bg.webp",
       "SourceId": "BiblePlan",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\",
       "BasePath": "_content/BiblePlan",
-      "RelativePath": "original-favicon.png",
+      "RelativePath": "images/new-bg.webp",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -337,7 +320,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\original-favicon.png"
+      "OriginalItemSpec": "wwwroot\\images\\new-bg.webp"
     },
     {
       "Identity": "C:\\CS\\BiblePlan\\BiblePlan\\wwwroot\\print-dialog.js",

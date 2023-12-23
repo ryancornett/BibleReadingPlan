@@ -4,6 +4,7 @@
 @using MudBlazor;
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
+@inject PrintService PrintService
 
 @if (isLoading)
 {
@@ -97,7 +98,7 @@
                             <span class="oi oi-spreadsheet me-1" aria-hidden="true"></span> CSV</button>
                         <button type="button" class="btn btn-primary" aria-label="download iCAL file" @onclick="DownloadiCalFile"><span class="oi oi-calendar me-1" aria-hidden="true"></span> iCal</button>
                         <button type="button" class="btn btn-primary" aria-label="download PDF file or print" @onclick="DownloadTextFile"><span class="oi oi-print me-1" aria-hidden="true"></span> Print</button>
-                        <button type="reset" aria-label="reset all plan information inputs" class="btn btn-primary"><MudIcon Icon=@Icons.Material.Filled.PlaylistRemove aria-hidden="true"/> Clear</button>
+                        <button type="button" aria-label="reset all plan information inputs" class="btn btn-primary" @onclick="ResetPlan"><MudIcon Icon=@Icons.Material.Filled.PlaylistRemove aria-hidden="true"/> Clear</button>
                     </div>
                 </div>
             </div>

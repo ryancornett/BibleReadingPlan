@@ -195,12 +195,12 @@ namespace BiblePlan.Shared
 
                 try
                 {
-                    string textData = await textFileFactory.GenerateCalendar(plan);
-                    string fileName = $"{plan.Name}.pdf";
-                    string base64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(textData));
-                    string encodedContent = $"data:text/pdf;charset=utf-8;base64,{Uri.EscapeDataString(base64)}";
-                    await JSRuntime.InvokeVoidAsync("openPrintDialog", encodedContent, fileName);
-                    plan = new Plan();
+                    var textData = await textFileFactory.GenerateCalendar(plan);
+                    PrintService.Name = plan.Name;
+                    PrintService.Days = plan.ReadingDays;
+                    PrintService.Readings = textData.Item1;
+                    PrintService.Dates = textData.Item2;
+                    NavigationManager.NavigateTo("/print", true);
                 }
                 catch (Exception ex)
                 {
@@ -211,6 +211,11 @@ namespace BiblePlan.Shared
                 isLoading = false;
                 StateHasChanged();
             }
+        }
+
+        private void ResetPlan()
+        {
+            plan = new Plan();
         }
 
         private ReadingLogic logic = new ReadingLogic();

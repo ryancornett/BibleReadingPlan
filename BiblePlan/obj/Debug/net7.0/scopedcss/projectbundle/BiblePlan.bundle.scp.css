@@ -77,8 +77,17 @@ collapsible.active[b-nslmltakfo] {
     }
 }
 /* _content/BiblePlan/Shared/MainLayout.razor.rz.scp.css */
+.page[b-wj8pc1oomi] {
+    height:100%;
+    width:100%;
+    background-color: black;
+    background-image: url("/images/new-bg.webp");
+    background-size: cover;
+    backdrop-filter: blur(8px) grayscale(75%);
+}
+
 header[b-wj8pc1oomi] {
-    filter: drop-shadow(25px 0px 5px #2376fc);
+    filter: drop-shadow(10px 0px 12px #2376fc);
 }
 
 header[b-wj8pc1oomi], footer[b-wj8pc1oomi] {
@@ -89,7 +98,7 @@ header[b-wj8pc1oomi], footer[b-wj8pc1oomi] {
 }
 
 footer[b-wj8pc1oomi] {
-    filter: drop-shadow(-25px 0px 5px #2376fc);
+    filter: drop-shadow(-10px 0px 12px #2376fc);
 }
 
 .josefin[b-wj8pc1oomi] {
@@ -126,79 +135,27 @@ header > a[b-wj8pc1oomi] {
 }
 
     .footer-link:hover[b-wj8pc1oomi] {
-        color: cornflowerblue;
+        color: #78aafc;
         transition: all linear 250ms;
     }
 
 .font-size-100[b-wj8pc1oomi] {
     font-size: 0.85rem;
 }
-/* _content/BiblePlan/Shared/NavMenu.razor.rz.scp.css */
-.navbar-toggler[b-g03ur9z4yb] {
-    background-color: rgba(255, 255, 255, 0.1);
+/* _content/BiblePlan/Shared/Printable.razor.rz.scp.css */
+body[b-atz1k5bc7p] {
+    background-color:white;
+    background-image:none;
 }
 
-.top-row[b-g03ur9z4yb] {
-    height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+main[b-atz1k5bc7p] {
+    width: 80vw;
 }
 
-.navbar-brand[b-g03ur9z4yb] {
-    font-size: 1.1rem;
+.day-header[b-atz1k5bc7p] {
+    font-size:0.75rem;
 }
 
-.oi[b-g03ur9z4yb] {
-    width: 2rem;
-    font-size: 1.1rem;
-    vertical-align: text-top;
-    top: -2px;
-}
-
-.nav-item[b-g03ur9z4yb] {
-    font-size: 0.9rem;
-    padding-bottom: 0.5rem;
-}
-
-    .nav-item:first-of-type[b-g03ur9z4yb] {
-        padding-top: 1rem;
-    }
-
-    .nav-item:last-of-type[b-g03ur9z4yb] {
-        padding-bottom: 1rem;
-    }
-
-    .nav-item[b-g03ur9z4yb]  a {
-        color: #d7d7d7;
-        border-radius: 4px;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        line-height: 3rem;
-    }
-
-.nav-item[b-g03ur9z4yb]  a.active {
-    background-color: rgba(255,255,255,0.25);
-    color: white;
-}
-
-.nav-item[b-g03ur9z4yb]  a:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
-}
-
-@media (min-width: 641px) {
-    .navbar-toggler[b-g03ur9z4yb] {
-        display: none;
-    }
-
-    .collapse[b-g03ur9z4yb] {
-        /* Never collapse the sidebar for wide screens */
-        display: block;
-    }
-    
-    .nav-scrollable[b-g03ur9z4yb] {
-        /* Allow sidebar to scroll for tall menus */
-        height: calc(100vh - 3.5rem);
-        overflow-y: auto;
-    }
+.cell[b-atz1k5bc7p] {
+    font-size:0.65rem;
 }

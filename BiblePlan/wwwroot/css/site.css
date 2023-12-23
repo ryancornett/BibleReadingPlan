@@ -1,12 +1,5 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-body {
-    background-color: black;
-    background-image: url("/images/bg.webp");
-    background-size: cover;
-    backdrop-filter: blur(8px) grayscale(75%);
-}
-
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }

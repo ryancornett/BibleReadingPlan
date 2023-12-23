@@ -1,0 +1,16 @@
+﻿body {
+    background-color:white;
+    background-image:none;
+}
+
+main {
+    width: 80vw;
+}
+
+.day-header {
+    font-size:0.75rem;
+}
+
+.cell {
+    font-size:0.65rem;
+}

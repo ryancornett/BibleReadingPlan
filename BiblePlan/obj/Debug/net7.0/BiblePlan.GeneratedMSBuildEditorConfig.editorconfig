@@ -24,6 +24,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/CS/BiblePlan/BiblePlan/Shared/PrintLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFByaW50TGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/CS/BiblePlan/BiblePlan/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -35,6 +39,10 @@ build_metadata.AdditionalFiles.CssScope = b-nslmltakfo
 [C:/CS/BiblePlan/BiblePlan/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-wj8pc1oomi
+
+[C:/CS/BiblePlan/BiblePlan/Shared/Printable.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFByaW50YWJsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-atz1k5bc7p
 
 [C:/CS/BiblePlan/BiblePlan/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
