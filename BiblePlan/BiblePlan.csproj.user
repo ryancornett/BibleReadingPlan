@@ -2,5 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ActiveDebugProfile>https</ActiveDebugProfile>
+    <NameOfLastUsedPublishProfile>C:\CS\BiblePlan\.github\workflows\BiblePlan20231223191743.yml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
