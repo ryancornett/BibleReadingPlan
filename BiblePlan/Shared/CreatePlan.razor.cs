@@ -11,10 +11,6 @@ namespace BiblePlan.Shared
     {
         protected override Task OnInitializedAsync()
         {
-            /*PrintService.Dates.Clear();
-            PrintService.Name = string.Empty;
-            PrintService.Readings.Clear();
-            PrintService.Days.Clear();*/
             return base.OnInitializedAsync();
         }
 

@@ -22,6 +22,11 @@ namespace BiblePlan.Shared
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await JSRuntime.InvokeVoidAsync("printPage");
+            await Task.Delay(500);
+            PrintService.Dates.Clear();
+            PrintService.Name = string.Empty;
+            PrintService.Readings.Clear();
+            PrintService.Days.Clear();
         }
 
         private List<List<TableRowData>> GetTableItems()
