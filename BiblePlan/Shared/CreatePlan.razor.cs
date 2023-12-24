@@ -9,7 +9,16 @@ namespace BiblePlan.Shared
 {
     public partial class CreatePlan
     {
-        static Plan plan = new Plan();
+        protected override Task OnInitializedAsync()
+        {
+            /*PrintService.Dates.Clear();
+            PrintService.Name = string.Empty;
+            PrintService.Readings.Clear();
+            PrintService.Days.Clear();*/
+            return base.OnInitializedAsync();
+        }
+
+        private Plan plan = new Plan();
         private bool selectOldTestament = false;
         private bool selectNewTestament = false;
         private List<int> OTDisplayRanges = new List<int>() { 0,7,7,7,14,7,21,7,28,7,35,4 };
