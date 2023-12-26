@@ -1,13 +1,12 @@
 ﻿@inject IJSRuntime JSRuntime
-@inject PrintService PrintService
 
-@page "/print"
+@page "/print/{SetHashCode:int}"
 @using BiblePlan.Domain;
 @using BiblePlan.Services;
 @using MudBlazor;
 
 @layout PrintLayout
-<PageTitle>Custom Plan: @title</PageTitle>
+<PageTitle>@title</PageTitle>
 <h2 class="text-center">@title</h2>
 
 <MudTable Items="@GetTableItems()" Dense="true">

@@ -201,11 +201,9 @@ namespace BiblePlan.Shared
                 try
                 {
                     var textData = await textFileFactory.GenerateCalendar(plan);
-                    PrintService.Name = plan.Name;
-                    PrintService.Days = plan.ReadingDays;
-                    PrintService.Readings = textData.Item1;
-                    PrintService.Dates = textData.Item2;
-                    NavigationManager.NavigateTo("/print", true);
+                    PrintObject printObject = new() { Name = plan.Name, Days = plan.ReadingDays, Readings = textData.Item1, Dates = textData.Item2 };
+                    StateContainer.ObjectTunnel.Add(printObject.GetHashCode(), printObject);
+                    NavigationManager.NavigateTo($"/print/{printObject.GetHashCode()}", true);
                 }
                 catch (Exception ex)
                 {

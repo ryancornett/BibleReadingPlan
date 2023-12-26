@@ -11,7 +11,7 @@
 
         public Plan()
         {
-            Name = "Default";
+            Name = "Your_plan_name";
             StartDate = DateTime.Now;
             EndDate = DateTime.Now.AddDays(14);
             StartTime = "6:30 AM";

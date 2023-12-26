@@ -1,32 +1,33 @@
 using Microsoft.JSInterop;
 using BiblePlan.Domain;
 using BiblePlan.Services;
+using Microsoft.AspNetCore.Components;
 
 namespace BiblePlan.Shared
 {
     public partial class Printable
     {
+        [Parameter] public int SetHashCode { get; set; }
+
         private string title;
         public List<string> dates;
         private List<Reading> readings;
         public List<string> days;
         protected override Task OnInitializedAsync()
         {
-            title = PrintService.Name;
-            dates = PrintService.Dates;
-            readings = PrintService.Readings;
-            days = PrintService.Days;
+            var data = StateContainer.ObjectTunnel[SetHashCode];
+            title = data.Name;
+            dates = data.Dates;
+            readings = data.Readings;
+            days = data.Days;
             return base.OnInitializedAsync();
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await JSRuntime.InvokeVoidAsync("printPage");
+            StateContainer.ObjectTunnel.Remove(SetHashCode);
             await Task.Delay(500);
-            PrintService.Dates.Clear();
-            PrintService.Name = string.Empty;
-            PrintService.Readings.Clear();
-            PrintService.Days.Clear();
         }
 
         private List<List<TableRowData>> GetTableItems()

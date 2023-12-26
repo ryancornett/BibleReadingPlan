@@ -2,7 +2,7 @@
 
 namespace BiblePlan.Services
 {
-    public class PrintService
+    public class PrintObject
     {
         public List<Reading> Readings { get; set; }
         public List<string> Dates { get; set; }
